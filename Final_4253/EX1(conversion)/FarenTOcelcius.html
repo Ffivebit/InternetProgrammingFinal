@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farenheight to celcius</title>
+</head>
+<body>
+    <p>Convert FarenHeight to Celcius
+    </p>
+    <input type="text" name="insert" id="insert"></input>
+    <strong><div id="result" >&nbsp;</div></strong>
+    <button type="button" onclick="convert()">Calculate</button>
+</body>
+<script type="text/javascript">
+ function xmlhttprequestfunc(){
+        faren=document.getElementById("insert").value
+
+        if (window.XMLHttpRequest) {
+            return new XMLHttpRequest(); //Not IE
+        } else if(window.ActiveXObject) {
+            return new ActiveXObject("Microsoft.XMLHTTP"); //IE
+        } else {
+            alert("Your browser doesn't support the XmlHttpRequest object.");
+        }
+    }
+    function convert(){
+        var request = xmlhttprequestfunc();
+        request.open("GET","FarenTOcelcius.php?conv="+faren+"&t=",true);
+        request.send();
+        request.onreadystatechange = function(){
+            if (request.readyState == 4 && request.status==200) {
+        document.getElementById("result").innerHTML = request.responseText;
+            }
+        } 
+    }
+</script>
+</html>
